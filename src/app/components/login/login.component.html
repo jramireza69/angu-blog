@@ -1,0 +1,25 @@
+<div class="col-md-12 mt-3">
+<p>identificate en la plataforma!</p>
+<h1>{{page_title}}</h1>
+<form class="col-md-5 ml-o pl-o" #loginForm="ngForm" (ngSubmit)="onSubmit(loginForm)" >
+    <div class="form-group">
+        <label for="email">Email</label>
+        <input type="email" name="email" class="form-control" #email="ngModel" 
+        [(ngModel)] ="user.email" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$">
+        <small *ngIf="!email.valid && email.touched" class="invalid-feedback d-block">
+            El Correo electronico no es valido
+         </small>
+    </div>
+    <div class="form-group">
+        <label for="password">Contraseña</label>
+        <input type="password" name="password" class="form-control"  #password="ngModel" 
+        [(ngModel)] ="user.password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" required>
+        <small *ngIf="!password.valid" class="invalid-feedback d-block">
+            La contraeña debe contener una letra mayuscula y 8 caracteres
+         </small>
+    </div>
+    <div class="form-group mt-3">
+     <input type="submit" value="identificarse" class="btn btn-success" [disabled]="loginForm.invalid">   
+    </div>
+</form>
+</div>
